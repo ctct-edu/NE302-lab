@@ -1,0 +1,23 @@
+{
+  "name": "inventory-system",
+  "version": "1.0.0",
+  "description": "在庫管理システム - AIペアプログラミング実践編",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.13",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  }
+}

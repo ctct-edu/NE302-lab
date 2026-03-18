@@ -1,0 +1,91 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
+  // --------------------------------------------------------------------------
+  "formatter": {
+    // フォーマッターを有効化
+    "enabled": true,
+    // インデント幅（スペースの数）
+    "indentWidth": 2,
+    // インデントにスペースを使用（"tab" も選択可能）
+    "indentStyle": "space",
+    // 1 行の最大文字数（これを超えると自動改行）
+    "lineWidth": 100,
+    // 改行コードを LF に統一（Unix/macOS 標準）
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      // 文字列にシングルクォートを使用
+      "quoteStyle": "single",
+      // オブジェクトや配列の最後の要素にカンマを付ける
+      "trailingCommas": "es5",
+      // 文末にセミコロンを付ける
+      "semicolons": "always",
+      // アロー関数の引数が 1 つでも括弧を付ける: (x) => x  ← 括弧あり
+      "arrowParentheses": "always",
+      // オブジェクトの波括弧内にスペースを入れる: { foo: bar }  ← スペースあり
+      "bracketSpacing": true
+    }
+  },
+  "linter": {
+    // リンターを有効化
+    "enabled": true,
+    // ルール設定
+    "rules": {
+      // 推奨ルールセットを有効化 （ESLint の recommended に相当）
+      "recommended": true,
+      "style": {
+        // 再代入しない変数は const を使用
+        "useConst": "error",
+        // テンプレートリテラルの使用を推奨
+        "useTemplate": "warn",
+        // export する関数の一貫したスタイル （function 宣言を推奨）
+        "useExportType": "error",
+        // import type の使用を推奨
+        "useImportType": "error"
+      },
+      "suspicious": {
+        // console.log の使用を警告（本番に残さないため）
+        // console.warn と console.error は許可
+        "noConsole": "warn",
+        // debugger 文の使用を禁止
+        "noDebugger": "error",
+        // 重複した case ラベルを禁止
+        "noDuplicateCase": "error"
+      },
+      "correctness": {
+        // 未使用の変数をエラーとして報告
+        "noUnusedVariables": "error",
+        // 未使用のインポートをエラーとして報告
+        "noUnusedImports": "error"
+      }
+    }
+  },
+  "files": {
+    "includes": [
+      "src/**/*.ts",
+      "src/**/*.js",
+      "tests/**/*.ts",
+      "tests/**/*.js",
+      // 除外するディレクトリ・ファイル
+      "!node_modules",
+      "!dist",
+      "!coverage",
+      "!playwright-report"
+    ]
+  },
+  "overrides": [
+    {
+      // テストファイル用の設定
+      "includes": ["tests/**/*.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            // テストコードでは console.log を許可
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ]
+}

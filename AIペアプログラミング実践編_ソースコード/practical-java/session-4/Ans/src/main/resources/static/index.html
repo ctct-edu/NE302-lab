@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>在庫管理システム</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>📦 在庫管理システム</h1>
+      <nav>
+        <a href="#" class="nav-link active" data-page="products">商品一覧</a>
+        <a href="#" class="nav-link" data-page="inventory">在庫管理</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 商品一覧ページ -->
+      <section id="products-page" class="page active">
+        <div class="toolbar">
+          <input type="text" id="searchInput" placeholder="商品名で検索..." />
+          <button id="addProductBtn" class="btn btn-primary">+ 商品を追加</button>
+        </div>
+
+        <table id="productTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>商品名</th>
+              <th>カテゴリ</th>
+              <th>単価</th>
+              <th>登録日</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody">
+            <!-- JavaScriptで動的に生成 -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 在庫管理ページ -->
+      <section id="inventory-page" class="page">
+        <div class="toolbar">
+          <select id="productSelect">
+            <option value="">商品を選択...</option>
+          </select>
+        </div>
+
+        <div id="inventoryInfo" class="inventory-info" style="display: none">
+          <h2 id="inventoryProductName">商品名</h2>
+          <div class="inventory-stats">
+            <div class="stat-card">
+              <span class="stat-label">現在の在庫数</span>
+              <span id="currentQuantity" class="stat-value">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">発注閾値</span>
+              <span id="threshold" class="stat-value">0</span>
+            </div>
+          </div>
+
+          <div class="inventory-actions">
+            <div class="action-card">
+              <h3>入庫</h3>
+              <input type="number" id="inQuantity" min="1" value="1" />
+              <input type="text" id="inNote" placeholder="備考（任意）" />
+              <button id="inBtn" class="btn btn-success">入庫する</button>
+            </div>
+            <div class="action-card">
+              <h3>出庫</h3>
+              <input type="number" id="outQuantity" min="1" value="1" />
+              <input type="text" id="outNote" placeholder="備考（任意）" />
+              <button id="outBtn" class="btn btn-warning">出庫する</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 商品登録モーダル -->
+    <div id="addProductModal" class="modal">
+      <div class="modal-content">
+        <h2>商品を登録</h2>
+        <form id="addProductForm">
+          <div class="form-group">
+            <label for="productName">商品名</label>
+            <input type="text" id="productName" name="name" required maxlength="100" />
+          </div>
+          <div class="form-group">
+            <label for="productCategory">カテゴリ</label>
+            <select id="productCategory" name="category" required>
+              <option value="STATIONERY">文房具</option>
+              <option value="OFFICE">オフィス用品</option>
+              <option value="OTHER">その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="productPrice">単価</label>
+            <input type="number" id="productPrice" name="price" min="0" required />
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="cancelBtn" class="btn btn-secondary">キャンセル</button>
+            <button type="submit" class="btn btn-primary">登録</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 在庫管理システム - AIペアプログラミング実践編</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
